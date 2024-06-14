@@ -1,0 +1,11 @@
+{
+  "editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
+  "editor.formatOnSave": true,
+  "[javascript][typescript][json][jsonc][json5]": {
+    "editor.formatOnSave": false
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "eslint.validate": ["javascript", "typescript", "json", "jsonc", "json5"]
+}
