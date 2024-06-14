@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-prisma",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "ESLint plugin ensuring best practices and code quality for Prisma with TypeScript",
   "keywords": [
     "Prisma",
@@ -9,13 +9,17 @@
     "eslint-plugin"
   ],
   "author": "Lucas Grégoire",
+  "license": "MIT",
   "main": "./lib/index.js",
   "exports": "./lib/index.js",
   "files": [
     "lib"
   ],
   "scripts": {
-    "test": "mocha tests --recursive",
+    "pretest": "prisma generate --schema=./tests/test-project/schema.prisma",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js",
     "compile": "tsc --project tsconfig.json --no-emit",
     "build": "tsc --project tsconfig.build.json",
     "lint": "npm-run-all \"lint:*\"",
@@ -28,10 +32,16 @@
     "@typescript-eslint/types": "^7.13.0",
     "@typescript-eslint/utils": "^7.13.0"
   },
+  "peerDependencies": {
+    "eslint": ">=8.57.0"
+  },
   "devDependencies": {
+    "@prisma/client": "^5.15.0",
+    "@types/jest": "^29.5.12",
     "@types/node": "^20.14.2",
     "@typescript-eslint/eslint-plugin": "^7.13.0",
     "@typescript-eslint/parser": "^7.13.0",
+    "@typescript-eslint/rule-tester": "^7.13.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-doc-generator": "^1.7.1",
@@ -42,14 +52,14 @@
     "eslint-plugin-n": "^17.9.0",
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-unused-imports": "^3.2.0",
+    "jest": "^29.7.0",
     "markdownlint-cli": "^0.41.0",
-    "mocha": "^10.4.0",
-    "npm-run-all2": "^6.2.0"
+    "npm-run-all2": "^6.2.0",
+    "prisma": "^5.15.0",
+    "ts-jest": "^29.1.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
   },
-  "peerDependencies": {
-    "eslint": ">=8.57.0"
-  },
-  "license": "MIT",
   "engines": {
     "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
   }

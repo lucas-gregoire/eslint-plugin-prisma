@@ -11,10 +11,10 @@ This ESLint plugin is designed to help developers maintain best practices and en
 You'll first need to install [ESLint](https://eslint.org/):
 
 ```sh
-npm i eslint --save-dev
+npm install eslint --save-dev
 ```
 
-Next, install `eslint-plugin-prisma` :
+Next, install `eslint-plugin-prisma`:
 
 ```sh
 npm install eslint-plugin-prisma --save-dev
@@ -22,23 +22,23 @@ npm install eslint-plugin-prisma --save-dev
 
 ## Usage
 
-Add `prisma` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+Load the `recommended` configuration:
 
 ```json
 {
-    "plugins": [
-        "prisma"
-    ]
+  "extends": ["plugin:eslint-plugin-prisma/recommended"]
 }
 ```
 
-Then configure the rules you want to use under the rules section.
+Add `prisma` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix.
+Then configure the rules you want to use under the rules section:
 
 ```json
 {
-    "rules": {
-        "prisma/explicit-field-selection": "error"
-    }
+  "plugins": ["prisma"],
+  "rules": {
+    "prisma/explicit-field-selection": "error"
+  }
 }
 ```
 
@@ -56,13 +56,12 @@ Then configure the rules you want to use under the rules section.
 
 <!-- begin auto-generated rules list -->
 
-⚠️ Configurations set to warn in.\
-✅ Set in the `recommended` configuration.
+💼 Configurations enabled in.\
+✅ Set in the `recommended` configuration.\
+💡 Manually fixable by [editor suggestions](https://eslint.org/docs/latest/use/core-concepts#rule-suggestions).
 
-| Name                                                               | Description                                               | ⚠️ |
-| :----------------------------------------------------------------- | :-------------------------------------------------------- | :- |
-| [explicit-field-selection](docs/rules/explicit-field-selection.md) | Forces explicit selection of all fields in Prisma queries | ✅  |
+| Name                                           | Description                                               | 💼 | 💡 |
+| :--------------------------------------------- | :-------------------------------------------------------- | :- | :- |
+| [require-select](docs/rules/require-select.md) | Forces explicit selection of all fields in Prisma queries | ✅  | 💡 |
 
 <!-- end auto-generated rules list -->
-
-* `prisma/explicit-field-selection`: Forces explicit selection of all fields in Prisma queries.

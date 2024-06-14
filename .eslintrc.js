@@ -5,7 +5,7 @@ module.exports = {
     jest: true,
     es2021: true,
   },
-  ignorePatterns: ['!**/*', 'lib/**/*'],
+  ignorePatterns: ['!**/*', 'node_modules', 'lib'],
   overrides: [
     {
       files: ['*.ts'],
