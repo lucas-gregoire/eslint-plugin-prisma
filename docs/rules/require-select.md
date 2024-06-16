@@ -14,13 +14,17 @@ The `prisma/explicit-field-selection` rule enforces that all fields must be expl
 * **Avoiding over-fetching:** Prevents the common mistake of over-fetching data, which can lead to inefficiencies and potential security issues if sensitive data is unintentionally retrieved.
 * **Safe handling of database changes:** When no `select` clause is provided in a Prisma query, Prisma does not perform a `SELECT *` operation as in traditional SQL. Instead, it explicitly selects all columns by name. This behavior can cause queries to fail if a column is removed from the database schema. By enforcing explicit field selection, developers can ensure that their queries remain resilient to such schema changes, as they will only fetch the fields that are explicitly required.
 
-## Rule Details
+## Examples
+
+### Incorrect
 
 Consider the following example of a Prisma query without explicit field selection, which is **incorrect** code for this rule:
 
 ```typescript
 const users = await prisma.user.findMany();
 ```
+
+### Correct
 
 With the `prisma/explicit-field-selection` rule enforced, the **correct** code would be:
 
@@ -44,9 +48,9 @@ const users = await prisma.user.findMany({
 
 <!-- begin auto-generated rule options list -->
 
-| Name      | Description                                                        | Type     | Default                                                                                              |
-| :-------- | :----------------------------------------------------------------- | :------- | :--------------------------------------------------------------------------------------------------- |
-| `methods` | Prisma methods that should be checked for explicit field selection | String[] | [`findMany`, `findFirst`, `findUnique`, `count`, `aggregate`, `groupBy`, `sum`, `avg`, `min`, `max`] |
+| Name      | Description                                                        | Type     | Default                                                                          |
+| :-------- | :----------------------------------------------------------------- | :------- | :------------------------------------------------------------------------------- |
+| `methods` | Prisma methods that should be checked for explicit field selection | String[] | [`findFirst`, `findFirstOrThrow`, `findMany`, `findUnique`, `findUniqueOrThrow`] |
 
 <!-- end auto-generated rule options list -->
 

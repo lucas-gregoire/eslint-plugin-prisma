@@ -62,6 +62,7 @@ Then configure the rules you want to use under the rules section:
 
 | Name                                           | Description                                               | 💼 | 💡 |
 | :--------------------------------------------- | :-------------------------------------------------------- | :- | :- |
+| [no-unsafe](docs/rules/no-unsafe.md)           | Disallow the use of potentially unsafe Prisma methods     | ✅  |    |
 | [require-select](docs/rules/require-select.md) | Forces explicit selection of all fields in Prisma queries | ✅  | 💡 |
 
 <!-- end auto-generated rules list -->
