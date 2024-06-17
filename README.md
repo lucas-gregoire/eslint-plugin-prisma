@@ -37,7 +37,8 @@ Then configure the rules you want to use under the rules section:
 {
   "plugins": ["prisma"],
   "rules": {
-    "prisma/explicit-field-selection": "error"
+    "prisma/no-unsafe": "error",
+    "prisma/require-select": "error"
   }
 }
 ```
