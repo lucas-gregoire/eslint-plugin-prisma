@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-prisma",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "ESLint plugin ensuring best practices and code quality for Prisma with TypeScript",
   "keywords": [
     "Prisma",
