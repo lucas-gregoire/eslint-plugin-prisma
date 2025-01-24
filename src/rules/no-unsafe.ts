@@ -1,6 +1,5 @@
-import { AST_NODE_TYPES, ESLintUtils } from '@typescript-eslint/utils';
+import { AST_NODE_TYPES } from '@typescript-eslint/utils';
 import { createRule } from '../utils/create-rule';
-import { isPrismaCallExpression } from '../utils/is-prisma-call-expression';
 
 type MessageIds = 'unsafeMethod';
 
@@ -38,7 +37,6 @@ export const noUnsafe = createRule<Options, MessageIds>({
     },
   },
   create(context) {
-    const services = ESLintUtils.getParserServices(context);
     const unsafeMethods = context.options[0]?.unsafeMethods ?? DEFAULT_OPTIONS[0].unsafeMethods;
 
     return {
@@ -46,8 +44,7 @@ export const noUnsafe = createRule<Options, MessageIds>({
         if (
           node.callee.type !== AST_NODE_TYPES.MemberExpression ||
           node.callee.property.type !== AST_NODE_TYPES.Identifier ||
-          !unsafeMethods.includes(node.callee.property.name) ||
-          !isPrismaCallExpression(node.callee, services)
+          !unsafeMethods.includes(node.callee.property.name)
         ) {
           return;
         }

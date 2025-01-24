@@ -17,12 +17,40 @@ const prisma = new PrismaClient();
 
 ruleTester.run('require-select', requireSelect, {
   valid: [
-    INIT + 'prisma.unknownTable.findMany({})',
     INIT + 'prisma.client.findMany({ select: { id: true, name: true } })',
     INIT + 'prisma.client.findMany({ where: { id: 123 }, select: { id: true, name: true } })',
-    'prisma.client.findMany({ where: { id: 123 } })',
   ],
   invalid: [
+    {
+      code: 'prisma.client.findMany({ where: { id: 123 } })',
+      errors: [
+        {
+          messageId: 'missingSelect',
+          data: { method: 'findMany' },
+          suggestions: [
+            {
+              messageId: 'insertSelect',
+              output: 'prisma.client.findMany({ select: {}, where: { id: 123 } })',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      code: INIT + 'prisma.unknownTable.findMany({})',
+      errors: [
+        {
+          messageId: 'missingSelect',
+          data: { method: 'findMany' },
+          suggestions: [
+            {
+              messageId: 'insertSelect',
+              output: INIT + 'prisma.unknownTable.findMany({ select: {} })',
+            },
+          ],
+        },
+      ],
+    },
     {
       code: INIT + `prisma.client.findMany({ where: { id: 123 } })`,
       errors: [

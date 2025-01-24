@@ -1,6 +1,5 @@
 import { AST_NODE_TYPES, ESLintUtils } from '@typescript-eslint/utils';
 import { createRule } from '../utils/create-rule';
-import { isPrismaCallExpression } from '../utils/is-prisma-call-expression';
 
 type MessageIds = 'missingSelect' | 'insertSelect';
 
@@ -48,8 +47,7 @@ export const requireSelect = createRule<Options, MessageIds>({
         if (
           node.callee.type !== AST_NODE_TYPES.MemberExpression ||
           node.callee.property.type !== AST_NODE_TYPES.Identifier ||
-          !methods.includes(node.callee.property.name) ||
-          !isPrismaCallExpression(node.callee, services)
+          !methods.includes(node.callee.property.name)
         ) {
           return;
         }
